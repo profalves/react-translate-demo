@@ -8,6 +8,11 @@ import Input from './components/input'
 export default function App() {
   const [locale, setLocale] = useState(LOCALES['EN'])
 
+  const changeLng = async (lng) => {
+    await localStorage.setItem('lng', lng);
+    setLocale(LOCALES[localStorage.getItem('lng')])
+  }
+
   return (
     <I18nProvider locale={locale}>
       <div className="App">
@@ -20,9 +25,9 @@ export default function App() {
           }
         </FormattedMessage>
         <br />
-        <button onClick={() => setLocale(LOCALES['EN'])}>English</button>
-        <button onClick={() => setLocale(LOCALES['FR'])}>French</button>
-        <button onClick={() => setLocale(LOCALES['DE'])}>German</button>
+        <button onClick={() => changeLng('EN')}>English</button>
+        <button onClick={() => changeLng('FR')}>French</button>
+        <button onClick={() =>changeLng('DE')}>German</button>
       </div>
     </I18nProvider>
   );
