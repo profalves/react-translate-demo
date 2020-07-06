@@ -6,7 +6,8 @@ import t from './i18n/translate';
 import Input from './components/input'
 
 export default function App() {
-  const [locale, setLocale] = useState(LOCALES['EN'])
+  const language = localStorage.getItem('lng') || LOCALES['EN']
+  const [locale, setLocale] = useState(LOCALES[language])
 
   const changeLng = async (lng) => {
     await localStorage.setItem('lng', lng);
